@@ -1,90 +1,311 @@
-Definition of 'Failure'
+1. Remaining Life Measurement
 
-    Label: Failure
-    Definition: An Event in which an item loses its ability to perform a required function.
-
+Definition: An estimation of the remaining useful life of a component or system, typically expressed in time or usage cycles.
 
 
-Justification:
+Class Information:
 
-    Failure is an Event because it is a process or process boundary recognized by an agent where an item loses functionality.
-    Placing Failure directly under Event aligns with the definition of Event in your ontology:
-        Event: Phenomena (process or process boundary) that is recognized by an agent and typically recorded.
-
-Formal Axiom
-
-    Axiom: Failure(x) → Event(x) ∧ ∃y(MaterialEntity(y) ∧ losesFunction(x, y))
-
-    This axiom states that if x is a Failure, then x is an Event, and there exists a MaterialEntity y such that y loses its function during x.
+    Name: Remaining Life Estimate Information Content Entity
 
 
+2. Cancellation
 
-     Definition of 'Fault'
+Definition: A planned act where a scheduled process or service is terminated before completion.
 
-    Label: Fault
-    Definition: A Quality representing the state where an item is unable to perform as required due to an internal condition.
+Parent Class:
+
+    Planned Act
+    (Under: Process > Act > Planned Act)
+
+Class Information:
+
+    Name: Act of Cancellation
+    Annotations:
+        hasDefinition: "A planned act where an intended process or service is terminated before completion."
+    Properties:
+        has_agent some Person or Organization
+        acts_on some Process or Service
+
+------------------
+
+3. Delay
+
+Definition: A change in the scheduled timing of a process, causing it to start or finish later than planned.
+
+Parent Class:
+
+    Change
+    (Under: Process > Change)
+
+Class Information:
+
+    Name: Process Delay
+    Annotations:
+        hasDefinition: "A change where the scheduled time of a process is postponed or extended."
+    Properties:
+        affects some Process
+        has_duration some Time Interval
+
+-------------------------
+
+5. Recall
+
+Definition: A planned act where a producer or authority requests the return of a product due to identified issues or defects.
+
+Parent Class:
+
+    Planned Act
+    (Under: Process > Act > Planned Act)
+
+Class Information:
+
+    Name: Act of Product Recall
+    Annotations:
+        hasDefinition: "A planned act where a producer or authority requests the return of a product due to identified issues."
+    Properties:
+        has_agent some Organization
+        acts_on some Product
+
+-----------------------------
+
+4. Diversion
+
+Definition: An act of travel where the planned route or destination is changed to an alternative.
+
+Parent Class:
+
+    Act of Travel
+    (Under: Process > Act > Unplanned Act > Act of Motion > Act of Travel)
+
+Class Information:
+
+    Name: Act of Diversion
+    Annotations:
+        hasDefinition: "An act of travel where the planned route or destination is changed to an alternative."
+    Properties:
+        has_agent some Vehicle or Person
+        has_origin some Original Destination
+        has_destination some Alternate Destination
+
+----------------------------------------
 
 
-Definitions
+6. MRO Inspection
 
-    Accident:
-        Definition: An Event involving significant damage or injury associated with the operation of an aircraft.
+Definition: An act of maintenance involving the inspection of equipment or components as part of maintenance, repair, and operations procedures.
 
-    Incident:
-        Definition: An Event, other than an accident, associated with the operation of an aircraft, which affects or could affect the safety of that operation.
+Parent Class:
 
-    Serious Incident:
-        Definition: An Incident in which an accident nearly occurred.
+    Act of Maintenance
+    (Under: Process > Act > Planned Act > Act of Artifact Processing > Act of Maintenance)
 
-    Immediate Hazard to Aircraft Operations:
-        Definition: An Event posing an immediate threat to the safety of aircraft operations, even if no incident or accident has occurred.
+Class Information:
 
+    Name: MRO Inspection
+    Annotations:
+        hasDefinition: "An act of maintenance involving the inspection of equipment or components as part of MRO procedures."
+    Properties:
+        has_agent some Technician or Engineer
+        acts_on some Equipment or Component
 
-
-
-
-     Option to Model 'Fault' as a 'MaterialState'
-
-Alternatively, we can consider Fault as a specific type of MaterialState where the item's function is impaired.
-Definition of 'FaultState'
-
-    Label: FaultState
-    Definition: A MaterialState where a material entity is unable to perform its required function due to an internal condition.
-
-Placement
-
-    Entity (BFO:0000001)
-        Occurrent (BFO:0000003)
-            Process (BFO:0000015)
-                MaterialState
-                    FaultState
-
-Justification:
-
-    MaterialState is defined as a process in which a material entity has a condition that remains unchanged.
-    FaultState is a specific MaterialState where the condition is the inability to perform the required function.
-    This placement emphasizes the processual aspect of the faulty condition over time.
-
-Formal Axiom
-
-    Axiom: FaultState(x) → MaterialState(x) ∧ ∃y(MaterialEntity(y) ∧ participatesInAtSomeTime(y, x) ∧ unableToPerformFunction(y))
-
--------------------------------------
+------------------------------------------------------
 
 
-b. Fault
+7. Performance Issue
 
-Definition:
+Definition: A state where an artifact's function is degraded below nominal levels.
 
-    Fault is a Stasis of Specifically Dependent Continuant representing the state of an item being unable to perform as required due to an internal state.
+Parent Class:
+
+    Stasis of Function
+    (Under: Process > Stasis > Stasis of Specifically Dependent Continuant > Stasis of Realizable Entity > Stasis of Function)
+
+Class Information:
+
+    Name: Degraded Performance Stasis
+    Annotations:
+        hasDefinition: "A stasis where the function of an artifact is degraded below nominal levels."
+    Properties:
+        inheres_in some Artifact
+        has_quality some Reduced Function
+
+-------------------------
 
 
-c. Failure Description
+8. Part Failure Identifier
 
-Definition:
+Definition: An identifier assigned to a part that has failed, used to uniquely identify and track the failed component.
 
-    Failure Description is an Event Description that is an Information Content Entity providing details about a Failure, including its characteristics, context, and impact.
+Parent Class:
 
-Explanation:
+    Artifact Identifier
+    (Under: Information Content Entity > Designative Information Content Entity > Non-Name Identifier > Artifact Identifier)
 
-    Failure Description documents the occurrence of a failure, capturing relevant information for analysis and reporting.
+Class Information:
+
+    Name: Part Failure Identifier
+    Annotations:
+        hasDefinition: "An artifact identifier assigned to a part that has failed."
+    Properties:
+        identifies some Failed Part
+        has_value some Identifier Code
+
+
+-----------------------------
+
+
+9. Weather Event
+
+Definition: A natural process involving atmospheric conditions, resulting in phenomena such as rain, snow, storms, etc.
+
+Parent Class:
+
+    Natural Process
+    (Under: Process > Natural Process)
+
+Class Information:
+
+    Name: Weather Event
+    Annotations:
+        hasDefinition: "A natural process involving atmospheric conditions resulting in weather phenomena."
+    Properties:
+        has_location some Geospatial Region
+        has_time some Temporal Interval
+
+
+----------------------------------------
+
+10. Operationality
+
+Definition: The state of being operational or capable of functioning.
+
+Parent Class:
+
+    Stasis of Artifact Operationality
+    (Under: Process > Stasis > Stasis of Specifically Dependent Continuant > Stasis of Realizable Entity > Stasis of Artifact Operationality)
+
+Class Information:
+
+    Name: Operationality
+    Annotations:
+        hasDefinition: "The state of being operational or capable of functioning."
+    Properties:
+        inheres_in some Artifact
+        has_value some Operational Status (Operational, Non-Operational, Partially Operational)
+
+
+---------------------------------
+
+11. Requirement
+
+Definition: A directive information content entity that specifies a necessary condition or capability.
+
+Parent Class:
+
+    Directive Information Content Entity
+    (Under: Information Content Entity > Directive Information Content Entity)
+
+Class Information:
+
+    Name: Requirement
+    Annotations:
+        hasDefinition: "A directive information content entity that specifies a necessary condition or capability."
+    Properties:
+        specifies some Necessary Condition or Capability
+        is_about some Process or Artifact
+
+
+-----------------------------------
+
+
+12. Failure Rate
+
+Definition: A ratio measurement representing the frequency with which a component or system fails over a specified period.
+
+Parent Class:
+
+    Ratio Measurement Information Content Entity
+    (Under: Information Content Entity > Descriptive Information Content Entity > Measurement Information Content Entity > Ratio Measurement Information Content Entity)
+
+Class Information:
+
+    Name: Failure Rate Measurement Information Content Entity
+    Annotations:
+        hasDefinition: "A ratio measurement information content entity representing the rate at which failures occur over time."
+    Properties:
+        measures some Failure Rate
+        has_unit some Failures per Time Unit or Failures per Cycle
+
+Additional Concepts Based on Decision Support Questions:
+13. Failure Incident
+
+Definition: An event where a component or system fails to perform its intended function.
+
+Parent Class:
+
+    Failure Event
+    (Under: Process > Effect > Failure Event)
+
+Class Information:
+
+    Name: Failure Event
+    Annotations:
+        hasDefinition: "An effect where a component or system fails to perform its intended function."
+    Properties:
+        occurs_in some Component or System
+        results_in some Loss of Function
+
+14. Failure Classification
+
+Definition: An information content entity that assigns a failure incident to a category based on predefined criteria.
+
+Parent Class:
+
+    Classification Information Content Entity
+    (Under: Information Content Entity > Descriptive Information Content Entity > Classification Information Content Entity)
+
+Class Information:
+
+    Name: Failure Classification Information Content Entity
+    Annotations:
+        hasDefinition: "An information content entity that categorizes a failure incident."
+    Properties:
+        classifies some Failure Event
+        has_value some Failure Category
+
+15. System Health Indicator
+
+Definition: A measurement or metric providing information about the operational health of a system.
+
+Parent Class:
+
+    Measurement Information Content Entity
+    (Under: Information Content Entity > Descriptive Information Content Entity > Measurement Information Content Entity)
+
+Class Information:
+
+    Name: System Health Measurement Information Content Entity
+    Annotations:
+        hasDefinition: "A measurement information content entity that provides metrics about the health status of a system."
+    Properties:
+        measures some System Health Indicator
+        has_value some Health Metric
+
+16. Mandatory Action
+
+Definition: A directive information content entity that specifies an action that must be performed.
+
+Parent Class:
+
+    Action Requirement
+    (Under: Information Content Entity > Directive Information Content Entity > Action Requirement)
+
+Class Information:
+
+    Name: Mandatory Action
+    Annotations:
+        hasDefinition: "A directive specifying an action that must be executed."
+    Properties:
+        requires some Action
+        is_about some System or Component
+
