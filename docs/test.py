@@ -377,4 +377,27 @@ Highlight the Overall Benefit:
     ----------------------------------------------------------------------------------
 
 
-    
+    Middle Architecture Criteria
+
+    EXTEND:
+        Requirement: Must extend from at least one top-level ontology that satisfies ISO/IEC 21838-1.
+        Purpose: Ensures alignment with foundational standards and broad generality.
+
+    DELIMIT:
+        Requirement: Composed solely of content extended from the top-level ontology's upper bound.
+        Purpose: Prevents inclusion of domain-specific or unrelated terms, maintaining clarity and focus.
+
+    HUB:
+        Requirement: Consists of non-overlapping ontology hubs.
+        Purpose: Supports modularity and avoids scope creep by ensuring each hub serves as a distinct foundation for ontology spokes.
+
+    INHERITANCE:
+        Requirement: Must cover all breadth areas defined by the top-level ontology.
+        Purpose: Guarantees comprehensive coverage and prevents gaps in the ontology's scope.
+
+Challenges
+
+    Defining Clear Boundaries:
+        Balancing between generality and specificity without overlapping with top or domain-level ontologies.
+    Avoiding Scope Creep:
+        Ensuring mid-level ontologies do not inadvertently include domain-specific terms or broaden beyond intended generality.
