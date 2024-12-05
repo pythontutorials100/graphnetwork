@@ -29,3 +29,26 @@ Dimensionless Quantity
 Mach Number
 
     Definition: A Dimensionless Quantity representing the ratio of an aircraft's speed to the speed of sound during the Flight process.
+
+
+Dimensionless Process Profile
+
+    Definition: A process profile that represents a dimensionless quantity characterizing a process through the ratio of two like-dimensional attributes of the process participants.
+        Genus: Process Profile
+        Differentia: representing a dimensionless quantity derived from the ratio of two like-dimensional attributes within a process.
+
+Mach Number
+
+    Definition: A dimensionless process profile representing the ratio of the aircraft's speed to the speed of sound in the surrounding medium during flight.
+        Genus: Dimensionless Process Profile
+        Differentia: representing the ratio of flight speed to the speed of sound.
+
+Allows for the inclusion of other dimensionless quantities relevant to process characterization.
+
+
+
+
+
+
+    
+
